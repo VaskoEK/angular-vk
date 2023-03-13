@@ -1,0 +1,102 @@
+@use "sass:map";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+$colors:(
+    "bg": rgb(230, 239, 247),
+    "text": rgb(51, 45, 45),
+    "bgForText": rgba(247, 231, 231, .7)
+);
+
+$height: 500px;
+
+@mixin btnDefaultStyle($color: blue, $bgColor: rgb(216, 192, 192), $padding: .5rem, $fontWeight: 700, $radius: 5px, $shadow: 2px 2px 10px rgb(145, 145, 214)) {
+    color: $color;
+    background-color: $bgColor;
+    padding: $padding;
+    font-weight: $fontWeight;
+    border-radius: $radius;
+    box-shadow: $shadow;
+}
+
+@function blockHeight() {
+    @return $height * .4;
+}
+
+button {
+    @include btnDefaultStyle();
+}
+
+.block-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: $height * .75;
+    background-image: url('../assets/macaron1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    h1,
+    h2 {
+        padding: .5rem;
+        margin: .3rem;
+        background-color: map.get($colors, "bgForText");
+    }
+    h1 {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    button:hover {
+        transform: scale(1.1);
+    }
+}
+
+.block-2 {
+    height: $height * .9;
+    background-color: map.get($colors, "bg");
+    color: map.get($colors, "text");
+    h1 {
+        padding: 1rem;
+    }
+    p {
+        text-align: justify;
+        padding: 1rem;
+    }
+    #macaron-pic {
+        height: 250px;
+        float: right;
+        padding: 0 .5rem;
+        &:hover {
+            filter: grayscale(80%);
+        }
+    }
+    button {
+        margin: 0 1rem;
+    }
+}
+
+.block-3 {
+    height: $height * .5;
+    background-color: rgb(71, 70, 80);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    div {
+        // background-color: rgb(76, 87, 87);
+        color: rgb(220, 229, 240);
+        font-weight: 700;
+        width: 20%;
+        height: blockHeight();
+        padding: 1rem;
+    }
+}
+
+
+
