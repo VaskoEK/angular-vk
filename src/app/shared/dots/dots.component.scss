@@ -1,0 +1,9 @@
+
+.dots{
+    display: flex;
+    justify-content: center;
+    .dot{
+      cursor: pointer;
+      font-size: 50px;
+    }
+  }

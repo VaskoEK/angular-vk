@@ -1,0 +1,14 @@
+<div class="slider">
+
+ <ng-container *ngFor="let slide of slideService.getSlides(); let sliderIndex = index " >
+  <div class="slide" *ngIf="slideService.getCurrentIndex() === sliderIndex" [ngStyle]="{'background-image': 'url('+slide.url+')'}" (click)="emitSlideIndex(sliderIndex)">
+    <p>{{slide.title +'____'+ sliderIndex}}</p>
+  </div>
+</ng-container>
+
+<app-arrows></app-arrows>
+
+<app-dots></app-dots>
+
+
+</div>
