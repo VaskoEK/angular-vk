@@ -14,7 +14,7 @@ export class AppComponent {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['home'])
+    this.router.navigate(['home'])  // ez is tömböt vár, mint a routerLink a html oldalon
   }
 
   navigateToLogin(): void {

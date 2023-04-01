@@ -2,20 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './feature/home/home.component';
 import { LoginComponent } from './feature/login/login.component';
+import { PostsComponent } from './feature/posts/posts.component';
+import { AuthGuardService } from './core/services/guards/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'home',  // ez lesz kiírva a Localhost:4200 után
     component: HomeComponent
   },
   {
-    path: 'login',  // ez lesz kiírva a Localhost:4200 után
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: '',
+    path: 'posts',
+    component: PostsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: '',  // ha semmmit nem ír be, irányítson rá a home-ra
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full'  // ezt ide kell írni a redirectTo miatt
   },
   {
     path: '**',  // ha bármi az url, irányítson rá a home-ra
