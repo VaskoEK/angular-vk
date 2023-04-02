@@ -8,13 +8,15 @@ import { HomeComponent } from './feature/home/home.component';
 import { LoginComponent } from './feature/login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { PostsComponent } from './feature/posts/posts.component';
+import { RegistrationComponent } from './feature/registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    PostsComponent
+    PostsComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 
 export type LoginApi = {  // az api oldalán használt elnevezések
-    username: string,
-    password: string
+  username: string,
+  password: string
 }
 
 export type LoginResponse = {

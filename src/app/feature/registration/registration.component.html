@@ -1,0 +1,31 @@
+
+<h1>Regisztráció</h1>
+
+<form [formGroup]="regForm">
+
+    <label for="reg-firstname">Keresztnév</label>
+    <input id="reg-firstname"
+    type="text"
+    formControlName="reg_firstname"
+    >
+
+    <label for="reg-lastName">Vezetéknév</label>
+    <input id="reg-lastName"
+    type="text"
+    formControlName="reg_lastName"
+    >
+
+    <label for="reg-age">Életkor</label>
+    <input id="reg-age"
+    type="number"
+    formControlName="reg_age"
+    >
+
+    <label for="reg-iscompany">Cég vagy?</label>
+    <input id="reg-iscompany"
+    type="checkbox"
+    formControlName="reg_isCompany"
+    >
+
+    <button type="submit" (click)="registrate()">Regisztráció</button>
+</form>
