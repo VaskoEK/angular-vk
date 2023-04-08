@@ -5,6 +5,7 @@ import { LoginComponent } from './feature/login/login.component';
 import { PostsComponent } from './feature/posts/posts.component';
 import { AuthGuardService } from './core/services/guards/auth-guard/auth-guard.service';
 import { RegistrationComponent } from './feature/registration/registration.component';
+import { PostComponent } from './feature/post/post.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'post/:id/test/:secondParam',
+    component: PostComponent,
     canActivate: [AuthGuardService]
   },
   {

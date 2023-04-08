@@ -3,6 +3,8 @@ export const environment = {
     api: {
         apiBaseUrl: 'https://dummyjson.com',
         login: '/auth/login',
-        registration: '/users/add'
+        registration: '/users/add',
+        posts: '/postss',
+        post: '/post/'
     }
 }

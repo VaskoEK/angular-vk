@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,9 @@ import { LoginComponent } from './feature/login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { PostsComponent } from './feature/posts/posts.component';
 import { RegistrationComponent } from './feature/registration/registration.component';
+import { PostComponent } from './feature/post/post.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,17 @@ import { RegistrationComponent } from './feature/registration/registration.compo
     HomeComponent,
     LoginComponent,
     PostsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
