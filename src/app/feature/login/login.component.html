@@ -3,7 +3,7 @@
 
 <form [formGroup]="loginForm">
 
-    <label for="login-username">Felhasználónév</label>
+    <!-- <label for="login-username">Felhasználónév</label>
     <input id="login-username"
     type="text"
     formControlName="login_username"
@@ -21,5 +21,35 @@
     formControlName="login_isCompany"
     >
 
-    <button type="submit" (click)="login()">Bejelentkezés</button>
+    <button type="submit" (click)="login()">Bejelentkezés</button> -->
+
+
+    <mat-card>
+        <mat-card-content class="mat-card-container">
+  
+          <mat-form-field class="example-form-field">
+            <mat-label>Felhasználónév</mat-label>
+            <input matInput type="text" id="login-username" formControlName="login_username" [(ngModel)]="value1">
+            <button *ngIf="value1" matSuffix mat-icon-button aria-label="Clear" (click)="value1=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field><br><br>
+  
+          <mat-form-field class="example-form-field">
+            <mat-label>Jelszó</mat-label>
+            <input matInput type="password" id="login-password" formControlName="login_password"[(ngModel)]="value2">
+            <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field><br><br>
+  
+          
+  
+          <mat-checkbox [(ngModel)]="checked" id="login-iscompany" formControlName="login_isCompany">Cég vagy?</mat-checkbox><br><br>
+          
+          <button mat-raised-button color="primary" (click)="login()">Bejelentkezés</button>
+  
+        </mat-card-content>
+      </mat-card>
+
 </form>

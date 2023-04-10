@@ -4,7 +4,7 @@ export const environment = {
         apiBaseUrl: 'https://dummyjson.com',
         login: '/auth/login',
         registration: '/users/add',
-        posts: '/postss',
+        posts: '/posts',
         post: '/post/'
     }
 }

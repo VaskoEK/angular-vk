@@ -16,6 +16,12 @@ export class RegistrationComponent {
 
   regForm: FormGroup;
 
+  value1 = '';
+  value2 = '';
+  value3 = '';
+
+  checked = false;
+
   constructor(private router: Router, private httpService: HttpService, private authService: AuthService) {
     this.regForm = new FormGroup({
       reg_firstname: new FormControl(null, [Validators.required]),

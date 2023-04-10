@@ -52,6 +52,8 @@ export class PostsComponent implements OnInit {
       }
     })
     
+
+    //API
     /* this.postService.getAllPosts();
     //SUBS
     this.postService.posts$.subscribe((posts: Post[] | null) => {
@@ -71,7 +73,7 @@ export class PostsComponent implements OnInit {
 
   editPost(post: Post) {
     
-    this.router.navigate(['post', post.id, 'test', Math.random()]);
+    this.router.navigate(['post', post.id]);
   }
     
   

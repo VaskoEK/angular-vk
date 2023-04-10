@@ -8,6 +8,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit, OnDestroy {
   
   value = 'Clear me';
+  value1 = '';
+  value2 = '';
+  value3 = '';
+
+  checked = false;
 
   ngOnInit(): void {
     console.log('HOME INIT');
@@ -19,4 +24,3 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
 }
-

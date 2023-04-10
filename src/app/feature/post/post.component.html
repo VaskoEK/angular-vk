@@ -1,6 +1,6 @@
 
 <div *ngIf="post">  <!-- post létezik-e egyáltalán -->
-    <p>
+    <!-- <p>
         {{post.id}}
     </p>
     <p>
@@ -16,6 +16,24 @@
     </p>
     <p>
         {{post.reactions}}
-    </p>
+    </p> -->
+
+
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{post.title}}</mat-card-title>
+          <mat-card-subtitle>Post id: {{post.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{post.body}}</p>
+          <p>
+            <span *ngFor="let tag of post.tags">
+                {{tag}}
+            </span>
+          </p>
+          <p>{{post.reactions}}</p>
+        </mat-card-content>
+    </mat-card>
+
 </div>
 

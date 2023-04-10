@@ -15,6 +15,12 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
+  value1 = '';
+  value2 = '';
+  value3 = '';
+
+  checked = false;
+
   constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
       login_username: new FormControl(null, [Validators.required]),

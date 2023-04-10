@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'post/:id/test/:secondParam',
+    path: 'post/:id',
     component: PostComponent,
     canActivate: [AuthGuardService]
   },
