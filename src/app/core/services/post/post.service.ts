@@ -35,7 +35,7 @@ export class PostService {
       return this.posts.value.find((post) => post.id == id);
     }
     else {
-      return this.posts.value;
+      return this.posts.value;  // ha nincs meg az adott post, adja vissza az egész tömböt
     }
   }
 

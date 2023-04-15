@@ -1,0 +1,12 @@
+
+<ul *ngIf="posts$|async as postResponse; else loadingError">
+
+    <li *ngFor="let post of postResponse.posts" (click)="openPost(post.id)">{{post.title}}</li>
+
+</ul>
+
+<ng-template #loadingError>
+
+    <p>Hiba a betöltés közben!</p>
+  
+  </ng-template>

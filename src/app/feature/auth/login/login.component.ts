@@ -17,7 +17,6 @@ export class LoginComponent {
 
   value1 = '';
   value2 = '';
-  value3 = '';
 
   checked = false;
 

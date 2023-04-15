@@ -49,3 +49,28 @@
     
 
 </div>
+
+<p>{{test}}</p>
+<p>{{test | date: "yyyy/MM/dd"}}</p>
+<p>{{test | date: "fullDate" | uppercase}}</p>
+
+
+
+<p *ngIf="loggedIn; else loggedOut">Be vagy jelentkezve!</p>  <!-- csak ez a p tag jelenik meg a feltételtől függően-->
+
+<ng-template #loggedOut>
+  <p>Kérjük, lépj be!</p>
+</ng-template>
+
+<!-- VAGY ÍGY: -->
+
+<ng-container *ngIf="loggedIn; then loggedInTemplate; else loggedOutTemplate">
+</ng-container>
+
+<ng-template #loggedInTemplate>
+  <p>Be vagy jelentkezve!</p>
+</ng-template>
+
+<ng-template #loggedOutTemplate>
+  <p>Kérjük, lépj be!</p>
+</ng-template>

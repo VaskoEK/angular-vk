@@ -6,6 +6,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 const modules: any[] = [
@@ -15,7 +17,9 @@ const modules: any[] = [
   MatCardModule,
   MatButtonModule,
   MatCheckboxModule,
-  MatMenuModule
+  MatMenuModule,
+  MatTableModule,
+  MatPaginatorModule
 ]
 
 @NgModule({

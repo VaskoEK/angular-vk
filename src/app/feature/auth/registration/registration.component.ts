@@ -42,7 +42,7 @@ export class RegistrationComponent {
       this.authService.reg(formData).subscribe((res:RegResponse)=>{
         if(res.id) {
           // console.log(res.lastName, res.id);
-          this.router.navigate(['login']);
+          this.router.navigate(['auth', 'login']);
         }
         else{
           alert("HIBA!");

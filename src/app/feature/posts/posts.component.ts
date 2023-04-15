@@ -1,8 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { Post, PostResponse } from 'src/app/core/types/post/post.type';
+import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-posts',
@@ -11,11 +15,26 @@ import { Post, PostResponse } from 'src/app/core/types/post/post.type';
 })
 export class PostsComponent implements OnInit {
 
+  displayedColumns: string[] = ['id', 'title', 'body', 'tags'];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
+  @ViewChild(MatSort) sort: MatSort =  new MatSort();
+
   loading: boolean = false;
   posts: Post[] = [];
   errorMsg: string = '';
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(private postService: PostService, private router: Router) {
+
+    // Assign the data to the data source for the table to render
+    // this.dataSource = new MatTableDataSource(this.posts);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   // ngOnInit(): void {
   //   this.postService.getAllPosts().subscribe((posts: PostResponse) => {
@@ -34,6 +53,15 @@ export class PostsComponent implements OnInit {
     // });
     this.init();
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
     
   private init() {
     //API
@@ -43,6 +71,7 @@ export class PostsComponent implements OnInit {
     this.postService.getAllPostsToComponent().subscribe({
       next: (response: PostResponse) => {
         this.posts = response.posts;
+        this.dataSource = new MatTableDataSource(this.posts);
         this.loading = false;
       },  // komp.-en belüli hibakez.: feliratkozásba belerakunk egy error ágat is:
       error: (err: HttpErrorResponse) => {

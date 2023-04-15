@@ -12,7 +12,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   value2 = '';
   value3 = '';
 
-  checked = false;
+  checked = true;
+
+  test: Date = new Date();
+
+  loggedIn:boolean = true;
 
   ngOnInit(): void {
     console.log('HOME INIT');

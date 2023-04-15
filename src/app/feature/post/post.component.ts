@@ -29,18 +29,18 @@ export class PostComponent implements OnInit, OnDestroy {
 
     this.postService.posts$.pipe(takeUntil(this.unsubscribe)).subscribe((posts: Post[] | null) => {
       const post = this.postService.getSinglePostById(this.id);
-    if (post === null) {
-      console.log("postok lekérése");
-      
-      this.postService.getAllPosts()
-    }
-    else if (post === undefined) {
-      alert("NINCS ILYEN POST");
-    }
-    else {
-      console.log("post beállítás");
-      this.post = post;
-    }
+      if (post === null) {
+        console.log("postok lekérése");
+        
+        this.postService.getAllPosts()
+      }
+      else if (post === undefined) {
+        alert("NINCS ILYEN POST");
+      }
+      else {
+        console.log("post beállítás");
+        this.post = post;
+      }
     })
 
     // VAN API 1 DB LEKÉRDEZÉSRE
