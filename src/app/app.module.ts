@@ -16,6 +16,9 @@ import { TruncatePipe } from './core/pipes/truncate/truncate.pipe';
 import { TagLimitPipe } from './core/pipes/tag-limit/tag-limit.pipe';
 import { AuthModule } from './feature/auth/auth.module';
 import { PostListComponent } from './feature/post-list/post-list.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ProductComponent } from './feature/product/product.component';
+import { HoverProdNameDirective } from './hover-prod-name.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { PostListComponent } from './feature/post-list/post-list.component';
     PostComponent,
     TruncatePipe,
     TagLimitPipe,
-    PostListComponent
+    PostListComponent,
+    ProductComponent,
+    HoverProdNameDirective
   ],
   imports: [
     BrowserModule,  // megkapja minden, ami az app modulból töltődik be!
@@ -35,7 +40,8 @@ import { PostListComponent } from './feature/post-list/post-list.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
-    AuthModule
+    AuthModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

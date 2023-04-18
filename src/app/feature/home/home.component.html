@@ -1,9 +1,7 @@
-
-
 <div id="container">
     <mat-slide-toggle>Toggle me!</mat-slide-toggle>
 
-    <br><br>
+    <!-- <br><br>
     
     <mat-form-field class="example-form-field">
       <mat-label>Clearable input</mat-label>
@@ -46,7 +44,7 @@
 
       </mat-card-content>
     </mat-card>
-    
+     -->
 
 </div>
 
@@ -74,3 +72,63 @@
 <ng-template #loggedOutTemplate>
   <p>Kérjük, lépj be!</p>
 </ng-template>
+
+
+<button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+  Do it!
+</button>
+
+<br><br>
+
+<!-- 
+<div>{{keys[0]}}</div>
+<span *ngFor="let product of productsByCategories.smartphones">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span>
+
+<div>{{keys[1]}}</div>
+<span *ngFor="let product of productsByCategories.laptops">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span>
+
+<div>{{keys[2]}}</div>
+<span *ngFor="let product of productsByCategories.fragrances">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span>
+
+<div>{{keys[3]}}</div>
+<span *ngFor="let product of productsByCategories.skincare">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span>
+
+<div>{{keys[4]}}</div>
+<span *ngFor="let product of productsByCategories.groceries">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span>
+
+<div>{{keys[5]}}</div>
+<span *ngFor="let product of productsByCategories.homeDecoration">
+  <img src="{{product.thumbnail}}">
+  <button (click)="navigateToProduct(product)">Érdekel</button>
+</span> -->
+
+
+
+<ng-container *ngFor="let key of keys">
+  <div>{{key}}</div>
+  <ng-container *ngFor="let productsByOneCategory of values">
+    
+    <ng-container *ngFor="let product of productsByOneCategory">
+    <ng-container *ngIf="product.category == key.toLowerCase()">
+        <img src="{{product.thumbnail}}">
+        <button (click)="navigateToProduct(product)">Érdekel</button>
+      </ng-container>
+      
+    </ng-container>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,30 @@
+
+<div *ngIf="product">
+    
+    <p>try event</p>
+    <button (mouseover)="count = count + 1">
+        Increment (when mouse is over)
+    </button>
+    count: {{count}}
+
+
+
+    <img src="{{product.thumbnail}}">
+    <p>
+        Product ID: {{product.id}}
+    </p>
+    <p>
+        <span id="productName">Terméknév:</span> {{product.title}}
+    </p>
+    <p>
+        <span>Eredeti ár:</span> {{product.price}} $
+    </p>
+    <p>
+        <span>Kedvezmény:</span> {{product.discountPercentage}}%
+    </p>
+    <p>
+        <span>Akciós ár:</span> <span id="discountPrice"> {{(product.price - product.price * product.discountPercentage / 100).toFixed(2)}} $</span>
+    </p>
+    <button>Megveszem</button>
+
+</div>

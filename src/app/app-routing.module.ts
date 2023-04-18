@@ -7,6 +7,7 @@ import { AuthGuardService } from './core/services/guards/auth-guard/auth-guard.s
 import { RegistrationComponent } from './feature/auth/registration/registration.component';
 import { PostComponent } from './feature/post/post.component';
 import { PostListComponent } from './feature/post-list/post-list.component';
+import { ProductComponent } from './feature/product/product.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
     path: 'post/:id',
     component: PostComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'product/:id',
+    component: ProductComponent
   },
   {
     path: '',  // ha semmmit nem ír be, irányítson rá a home-ra

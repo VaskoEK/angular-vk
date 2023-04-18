@@ -1,7 +1,7 @@
 
-#container {
-    padding: 200px;
-}
+// #container {
+//     padding: 200px;
+// }
 
 .example-form-field {
     width: 200px;
@@ -9,4 +9,11 @@
  
 .mat-card-container {
     background-color: rgb(174, 174, 192);
+}
+
+img {
+    max-height: 200px;
+    padding: 5px;
+    // display: inline-block;
+    // overflow: hidden;
 }

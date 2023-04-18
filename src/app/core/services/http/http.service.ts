@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, catchError, throwError } from 'rxjs';
 import { RegApi, RegResponse } from '../../types/api/reg-api.type';
 import { Post, PostResponse } from '../../types/post/post.type';
+import { Product, ProductResponse } from '../../types/product/product.type';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,25 @@ export class HttpService {
   }
 
 
+
+
+  getAllProducts(): Observable<ProductResponse> {
+    return this.getRequest(environment.api.products).pipe(
+      catchError(
+        (err) => {
+          console.log(err);
+          return throwError(() => "HIBA");
+        }
+      )
+    );
+  }
+
+  getSingleProduct(id: number): Observable<Product> {
+    return this.getRequest(environment.api.product + id);
+  }
+
+
+
   private getRequest(path: string): Observable<any> {
     return this.http.get(environment.api.apiBaseUrl + path).pipe(
       catchError((err) => {
@@ -62,10 +82,5 @@ export class HttpService {
   private postRequest(path: string, dataToPost: any): Observable<any> {  // environment.api.apiBaseUrl rögz., ezt bővíti ki a postLogin; itt még akármilyen típusú Observable lehet, ami létrejön, fentebb kapnak típust
     return this.http.post(environment.api.apiBaseUrl + path, dataToPost)
   }
-
-  
-
-
-  
 
 }
