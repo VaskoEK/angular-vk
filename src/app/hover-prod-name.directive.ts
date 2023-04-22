@@ -5,13 +5,13 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class HoverProdNameDirective {
 
-  newImgUrl: string = '';
+  prodName: string = '';
 
   constructor(private el: ElementRef) { }
 
   @HostListener('mouseenter') 
   onMouseEnter(): void {
-    this.hoverChangeBg(this.newImgUrl);
+    this.hoverChangeBg(this.prodName);
   }
 
   @HostListener('mouseleave') 
@@ -19,8 +19,8 @@ export class HoverProdNameDirective {
     this.hoverChangeBg('');
   }
 
-  private hoverChangeBg(imgUrl: string): void {
-    this.el.nativeElement.innerHTML = imgUrl;
+  private hoverChangeBg(name: string): void {
+    this.el.nativeElement.innerHTML = name;
   }
   
 }

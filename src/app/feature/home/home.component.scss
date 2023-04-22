@@ -12,8 +12,27 @@
 }
 
 img {
-    max-height: 200px;
+    max-height: 150px;
     padding: 5px;
-    // display: inline-block;
-    // overflow: hidden;
+}
+
+#boxForOneCategory {
+    border: 1px solid black;
+    width: 1000px;
+    height: 250px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+}
+
+#boxForOneProd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#buttonForNavOneProd {
+    width: 8rem;
+    background-image: linear-gradient(rgb(226, 224, 240), rgb(148, 148, 165));
+    border-radius: 5px;
 }

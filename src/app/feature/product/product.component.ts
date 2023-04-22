@@ -14,8 +14,8 @@ export class ProductComponent {
   id: number = -1;
   product: Product | null = null;
   private unsubscribe = new Subject<void>();
-  // discountPrice: number = this.product?.price - this.product.price * this.product.discountPercentage / 100;
   count: number = 0;
+  
 
   constructor(private productService: ProductService, private actRoute: ActivatedRoute) {}
 

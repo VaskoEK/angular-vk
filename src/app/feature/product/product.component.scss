@@ -1,17 +1,66 @@
 
-span {
-    font-style: italic;
+#divForProduct {
+    width: 480px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
+
 
 img {
     max-height: 250px;
     display: block;
+    border: 1px solid black;
 }
 
 #productName {
     font-weight: 800;
 }
 
-#discountPrice {
-    color: red;
+#divForPrices {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: .5rem;
+    border-radius: 5px;
+    position: relative;
+
+    #productPrice {
+        text-decoration: line-through;
+        font-size: .8rem;
+    }
+
+    #discountPrice {
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+}
+
+#divForDiscount {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+    color: black;
+    font-weight: 700;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+}
+
+#buyItButton {
+    width: 8rem;
+    background-image: linear-gradient(rgb(226, 224, 240), rgb(111, 111, 180));
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(197, 188, 188);
+    font-weight: 700;
 }

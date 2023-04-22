@@ -119,16 +119,36 @@
 
 
 
-<ng-container *ngFor="let key of keys">
+<!-- <ng-container *ngFor="let key of keys">
   <div>{{key}}</div>
   <ng-container *ngFor="let productsByOneCategory of values">
-    
-    <ng-container *ngFor="let product of productsByOneCategory">
-    <ng-container *ngIf="product.category == key.toLowerCase()">
-        <img src="{{product.thumbnail}}">
-        <button (click)="navigateToProduct(product)">Érdekel</button>
+      <ng-container *ngFor="let product of productsByOneCategory">
+        <ng-container *ngIf="product.category == key.toLowerCase()">
+          
+            <img src="{{product.thumbnail}}">
+            <button (click)="navigateToProduct(product)">Érdekel</button>
+          
+        </ng-container>
       </ng-container>
-      
-    </ng-container>
   </ng-container>
+</ng-container> -->
+
+<ng-container *ngFor="let key of keys">
+  <div>{{key}}</div>
+  <div id="boxForOneCategory">
+    <ng-container *ngFor="let productsByOneCategory of values">
+      <ng-container *ngFor="let product of productsByOneCategory">
+        <ng-container *ngIf="product.category == key.toLowerCase()">
+
+          <div id="boxForOneProd">
+            <img src="{{product.thumbnail}}">
+            <button (click)="navigateToProduct(product)" id="buttonForNavOneProd">Érdekel</button>
+          </div>
+
+        </ng-container>
+      </ng-container>
+  </ng-container>
+  </div>
 </ng-container>
+
+ 
