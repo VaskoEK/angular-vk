@@ -23,16 +23,21 @@ img {
     overflow: auto;
     display: flex;
     align-items: center;
+
+    #boxForOneProd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #buttonForNavOneProd {
+            width: 8rem;
+            background-image: linear-gradient(rgb(226, 224, 240), rgb(148, 148, 165));
+            border-radius: 5px;
+        }
+        
+    }
+
 }
 
-#boxForOneProd {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-#buttonForNavOneProd {
-    width: 8rem;
-    background-image: linear-gradient(rgb(226, 224, 240), rgb(148, 148, 165));
-    border-radius: 5px;
-}
+

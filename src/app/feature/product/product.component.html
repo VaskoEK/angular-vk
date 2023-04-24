@@ -8,23 +8,17 @@
 <br><br>
 
 <div *ngIf="product" id="divForProduct">
-    
-    <div>
+
+    <div class="wrapper">
         <img src="{{product.thumbnail}}">
+        <p class="productName">{{product.title}}</p>
     </div>
-    <!-- <p>
-        Product ID: {{product.id}}
-    </p> -->
-    <p id="productName">
-        {{product.title}}
-    </p>
 
     <div id="divForPrices">
-        <p id="productPrice">{{product.price}} $</p>
-        <p id="discountPrice"> {{(product.price - product.price * product.discountPercentage / 100).toFixed(2)}} $</p>
+        <p id="productPrice">${{product.price}}</p>
+        <p id="discountPrice"> ${{(product.price - product.price * product.discountPercentage / 100).toFixed(2)}}</p>
         <div id="divForDiscount">{{product.discountPercentage}}%</div>
     </div>
-    
     
     <button id="buyItButton">Megveszem</button>
 
