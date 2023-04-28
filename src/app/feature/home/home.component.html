@@ -80,75 +80,36 @@
 
 <br><br>
 
-<!-- 
-<div>{{keys[0]}}</div>
-<span *ngFor="let product of productsByCategories.smartphones">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span>
 
-<div>{{keys[1]}}</div>
-<span *ngFor="let product of productsByCategories.laptops">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span>
-
-<div>{{keys[2]}}</div>
-<span *ngFor="let product of productsByCategories.fragrances">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span>
-
-<div>{{keys[3]}}</div>
-<span *ngFor="let product of productsByCategories.skincare">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span>
-
-<div>{{keys[4]}}</div>
-<span *ngFor="let product of productsByCategories.groceries">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span>
-
-<div>{{keys[5]}}</div>
-<span *ngFor="let product of productsByCategories.homeDecoration">
-  <img src="{{product.thumbnail}}">
-  <button (click)="navigateToProduct(product)">Érdekel</button>
-</span> -->
-
-
-
-<!-- <ng-container *ngFor="let key of keys">
-  <div>{{key}}</div>
-  <ng-container *ngFor="let productsByOneCategory of values">
-      <ng-container *ngFor="let product of productsByOneCategory">
-        <ng-container *ngIf="product.category == key.toLowerCase()">
-          
-            <img src="{{product.thumbnail}}">
-            <button (click)="navigateToProduct(product)">Érdekel</button>
-          
-        </ng-container>
-      </ng-container>
-  </ng-container>
+<!-- key itt abc szerint tárolja el a stringeket -->
+<!-- <ng-container *ngFor="let product of productsByCategories | keyvalue">
+  <div>{{product.key}}</div>
+  <br>
+  <div id="boxForOneCategory">
+    <ng-container *ngFor="let catProd of product.value">
+      <div id="boxForOneProd">
+        <img src="{{catProd.thumbnail}}">
+        <button (click)="navigateToProduct(catProd)" id="buttonForNavOneProd">Érdekel</button>
+      </div>
+    </ng-container>
+  </div>
 </ng-container> -->
 
-<ng-container *ngFor="let key of keys">
-  <div>{{key}}</div>
+
+<!-- keyvalue pipe nélkül -->
+<!-- kategóriák az előfordulásuk sorrendjében -->
+<ng-container *ngFor="let cat of categories">
+  <div>
+    {{cat}}
+  </div>
   <div id="boxForOneCategory">
-    <ng-container *ngFor="let productsByOneCategory of values">
-      <ng-container *ngFor="let product of productsByOneCategory">
-        <ng-container *ngIf="product.category == key.toLowerCase()">
-
-          <div id="boxForOneProd">
-            <img src="{{product.thumbnail}}">
-            <button (click)="navigateToProduct(product)" id="buttonForNavOneProd">Érdekel</button>
-          </div>
-
-        </ng-container>
+    <ng-container *ngFor="let catProd of products">
+      <ng-container *ngIf="catProd.category === cat">
+        <div id="boxForOneProd">
+          <img src="{{catProd.thumbnail}}">
+          <button (click)="navigateToProduct(catProd)" id="buttonForNavOneProd">Érdekel</button>
+        </div>
       </ng-container>
-  </ng-container>
+    </ng-container>
   </div>
 </ng-container>
-
- 

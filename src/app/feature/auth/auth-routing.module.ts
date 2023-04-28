@@ -8,12 +8,14 @@ const routes: Routes = [
   
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    title: "Bejelentkezés"
   },
   
   {
     path: 'registration',
-    component: RegistrationComponent
+    component: RegistrationComponent,
+    title: "Regisztráció"
   },
   {
     path: '',

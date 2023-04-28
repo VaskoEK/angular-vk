@@ -27,18 +27,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   errorMsg: string = '';
 
 
-  productsByCategories: ProductsByCategories = {
-    smartphones: [],
-    laptops: [],
-    fragrances: [],
-    skincare: [],
-    groceries: [],
-    'home-decoration': []
-  };
-
-  
-  keys: string[] = Object.keys(this.productsByCategories);
-  values: Product[][] = Object.values(this.productsByCategories);
+  productsByCategories: ProductsByCategories = {};
+  categories: string[] = [];
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -58,27 +48,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     
     this.productService.getAllProductsToComponent().subscribe({
       next: (response: ProductResponse) => {
-        this.products = response.products;
-        for (let product of this.products) {
-          if (product.category === "smartphones") {
-            this.productsByCategories.smartphones.push(product);
-          }
-          else if (product.category === "laptops") {
-            this.productsByCategories.laptops.push(product);
-          }
-          else if (product.category === "fragrances") {
-            this.productsByCategories.fragrances.push(product);
-          }
-          else if (product.category === "skincare") {
-            this.productsByCategories.skincare.push(product);
-          }
-          else if (product.category === "groceries") {
-            this.productsByCategories.groceries.push(product);
-          }
-          else {
-            this.productsByCategories['home-decoration'].push(product);
-          }
-        }
+        this.products = response.products;  // a products típusa: Product[]
+
+        this.categories = this.products.map(product => product.category).filter((value, index, array) => {return array.indexOf(value)===index});  // 1x belerakunk minden kategóriát, előford.-uk szerinti sorrendben
+
+        // for (let product of this.products) {
+
+        //   if(!this.productsByCategories[product.category]) {
+        //     this.productsByCategories[product.category] = [];
+        //   }
+        //   this.productsByCategories[product.category].push(product);  // feltöltjük kategóriák szerint a productsByCategories üres objectet
+          
+        // }
+       
         this.loading = false;
       },  // komp.-en belüli hibakez.: feliratkozásba belerakunk egy error ágat is:
       error: (err: HttpErrorResponse) => {

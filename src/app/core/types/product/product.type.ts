@@ -13,12 +13,7 @@ export type Product = {
 }
 
 export type ProductsByCategories = {
-    smartphones: Product[],
-    laptops: Product[],
-    fragrances: Product[],
-    skincare: Product[],
-    groceries: Product[],
-    "home-decoration": Product[]
+    [key: string]: Product[]
 }
 
 export type ProductResponse = {

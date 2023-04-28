@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginAuth } from '../../types/auth/login-auth.type';
 import { HttpService } from '../http/http.service';
 import { LoginApi, LoginResponse } from '../../types/api/login-api.type';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RegAuth } from '../../types/auth/reg-auth.type';
 import { RegApi, RegResponse } from '../../types/api/reg-api.type';
 
@@ -13,11 +13,31 @@ export class AuthService {
 
   isCompany: boolean = false;
 
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  loggedIn$ = this.loggedIn.asObservable();
+
+
   constructor(private httpService: HttpService) { }
+
+  checkLoggedIn() {
+    if(this.isLoggedIn()) {
+      this.loggedIn.next(true);
+    }
+    else {
+      this.loggedIn.next(false);
+    }
+  }
 
   login(loginData: LoginAuth): Observable<LoginResponse> {
     this.isCompany = loginData.login_isCompany;
+    this.loggedIn.next(true);
     return this.httpService.postLogin(this.mapLoginDataToLoginApiData(loginData))
+  }
+
+  logout() {
+    localStorage.removeItem('token');  // törli a tokent (Firefox: Tároló - Helyi tárolóban)
+    this.loggedIn.next(false);
+  
   }
 
   initUser(userData: LoginResponse): void {

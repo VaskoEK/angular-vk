@@ -9,10 +9,11 @@
   <button mat-button [matMenuTriggerFor]="menu">Menü</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['']">HOME</button>
-    <button mat-menu-item [routerLink]="['auth/login']">Bejelentkezés</button>
+    <button mat-menu-item [routerLink]="['auth/login']" *ngIf="!loggedIn">Bejelentkezés</button>
     <button mat-menu-item [routerLink]="['auth/registration']">Regisztráció</button>
     <button mat-menu-item [routerLink]="['post-list']">Post lista</button>
   </mat-menu>
+  <span (click)="logout()" *ngIf="loggedIn">Kijelentkezés</span>
 
 </div>
 

@@ -15,8 +15,8 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  value1 = '';
-  value2 = '';
+  value1 = 'kminchelle';
+  value2 = '0lelplR';
 
   checked = false;
 
