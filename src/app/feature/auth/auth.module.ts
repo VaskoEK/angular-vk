@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { AuthRoutingModule } from './auth-routing.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -22,8 +23,8 @@ import { AuthRoutingModule } from './auth-routing.module';
     // BrowserAnimationsModule,  // nem maradhat, szól érte: ERROR Error: Uncaught (in promise): Error: Providers from the `BrowserModule` have already been loaded.
     AngularMaterialModule,  // használat miatt kell
     FormsModule, // AngularMaterialModule miatt kell
-    CommonModule  // ez is kell, kéri konzolban a button miatt
-    
+    CommonModule, // ez is kell, kéri konzolban a button miatt
+    SweetAlert2Module
   ]
 })
 export class AuthModule { }

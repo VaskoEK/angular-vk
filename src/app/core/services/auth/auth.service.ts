@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginAuth } from '../../types/auth/login-auth.type';
 import { HttpService } from '../http/http.service';
 import { LoginApi, LoginResponse } from '../../types/api/login-api.type';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { RegAuth } from '../../types/auth/reg-auth.type';
 import { RegApi, RegResponse } from '../../types/api/reg-api.type';
 
@@ -12,6 +12,8 @@ import { RegApi, RegResponse } from '../../types/api/reg-api.type';
 export class AuthService {
 
   isCompany: boolean = false;
+  private authErrorCount = new BehaviorSubject<number>(0);
+  authErrorCount$ = this.authErrorCount.asObservable();
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedIn.asObservable();
@@ -37,7 +39,15 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');  // törli a tokent (Firefox: Tároló - Helyi tárolóban)
     this.loggedIn.next(false);
-  
+  }
+
+  increaseErrorCount(): void {
+    let currentValue = this.authErrorCount.value;
+    this.authErrorCount.next(++currentValue);
+  }
+
+  resetErrorCount(): void {
+    this.authErrorCount.next(0);
   }
 
   initUser(userData: LoginResponse): void {

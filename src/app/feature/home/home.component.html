@@ -54,7 +54,7 @@
 
 
 
-<p *ngIf="loggedIn; else loggedOut">Be vagy jelentkezve!</p>  <!-- csak ez a p tag jelenik meg a feltételtől függően-->
+<p *ngIf="loggedIn; else loggedOut">ng-template gyak: Be vagy jelentkezve!</p>  <!-- csak ez a p tag jelenik meg a feltételtől függően-->
 
 <ng-template #loggedOut>
   <p>Kérjük, lépj be!</p>
@@ -66,11 +66,11 @@
 </ng-container>
 
 <ng-template #loggedInTemplate>
-  <p>Be vagy jelentkezve!</p>
+  <p>ng-template gyak: Be vagy jelentkezve!</p>
 </ng-template>
 
 <ng-template #loggedOutTemplate>
-  <p>Kérjük, lépj be!</p>
+  <p>ng-template gyak: Kérjük, lépj be!</p>
 </ng-template>
 
 

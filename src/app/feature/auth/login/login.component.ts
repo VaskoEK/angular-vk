@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { LoginResponse } from 'src/app/core/types/api/login-api.type';
@@ -15,17 +17,39 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
+  @ViewChild('mySwal')
+  public readonly mySwal!: SwalComponent;
+
+  private unsubscribe = new Subject<void>();
+
   value1 = 'kminchelle';
   value2 = '0lelplR';
 
   checked = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private actRoute: ActivatedRoute) {
     this.loginForm = new FormGroup({
       login_username: new FormControl(null, [Validators.required]),
       login_password: new FormControl(null, [Validators.required]),
       login_isCompany: new FormControl(null)
     });
+  }
+
+  ngOnDestroy(): void {
+    console.log("login page destroy");
+    this.authService.resetErrorCount();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
+  ngAfterViewInit(): void {
+
+    this.authService.authErrorCount$.pipe(takeUntil(this.unsubscribe)).subscribe((errorCount: number) => {
+      if(errorCount > 0) {
+
+        this.mySwal.fire();
+      }
+    })
   }
 
   login() {
