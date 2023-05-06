@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addTodo, deleteTodo, loadTodos } from './todo.actions';
+import { addTodo, completeTodo, deleteTodo, incompleteTodo, loadTodos } from './todo.actions';
 import { Observable } from 'rxjs';
 import { selectCompleteTodos, selectInCompleteTodos } from './todo.selector';
 
@@ -45,7 +45,17 @@ export class AppComponent {
     //NGRX
     this.store.dispatch(deleteTodo({id}));
   }
+
+  completeTodo(id: number): void {
+    this.store.dispatch(completeTodo({id}));
+  }
+
+  incompleteTodo(id: number): void {
+    this.store.dispatch(incompleteTodo({id}));
+  }
   
+
+
 }
 
 

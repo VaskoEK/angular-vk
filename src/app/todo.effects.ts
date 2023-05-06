@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap } from 'rxjs/operators';
-import { loadTodos, addTodo, deleteTodo, setTodos, addTodoAfterApi, deleteTodoAfterApi } from './todo.actions';
+import { loadTodos, addTodo, deleteTodo, setTodos, addTodoAfterApi, deleteTodoAfterApi, completeTodo, completeTodoAfterApi, incompleteTodoAfterApi, incompleteTodo } from './todo.actions';
 import { TodoService } from './todo.service';
 import { Todo } from './app.component';
 
@@ -50,6 +50,33 @@ export class TodoEffects {
         )
     );
 
+
+    completeTodo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(completeTodo),
+            switchMap(({ id }) =>
+                this.todoService.completeTodoById(id).pipe(
+                    switchMap((todo: Todo) => [
+                        completeTodoAfterApi({ id })
+                    ])
+                )
+            )
+        )
+    );
+
+
+    incompleteTodo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(incompleteTodo),
+            switchMap(({ id }) =>
+                this.todoService.incompleteTodoById(id).pipe(
+                    switchMap((todo: Todo) => [
+                        incompleteTodoAfterApi({ id })
+                    ])
+                )
+            )
+        )
+    );
 
     constructor(
         private actions$: Actions,

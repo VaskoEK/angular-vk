@@ -26,6 +26,20 @@ export class TodoService {
         return this.http.delete(url);
     }
 
+    completeTodoById(id: number): Observable<any> {
+        return this.http.patch(this.apiUrl + '/' + id, {
+            completed: true
+        } );
+    }
+
+    incompleteTodoById(id: number): Observable<any> {
+        return this.http.patch(this.apiUrl + '/' + id, {
+            completed: false
+        } );
+    }
+
+
+
     // private todos: Todo[] = [  // most ide írjuk, de amúgy api adja vissza
     //     {
     //         id: 1,

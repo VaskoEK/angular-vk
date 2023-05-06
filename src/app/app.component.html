@@ -9,17 +9,21 @@
 <div *ngIf="inCompletedTodos$ |async as todos">
   <h1>Tennivaló lista</h1>
   <ul>
-    <li *ngFor="let todo of todos">{{todo.title}}  <span (click)="deleteTodo(todo.id)">X</span></li>
+    <li *ngFor="let todo of todos">{{todo.title}}
+      <button (click)="deleteTodo(todo.id)" class="icon"><i class="fa fa-trash"></i></button>
+      <button (click)="completeTodo(todo.id)" id="completeButton" class="icon">✓</button>
+    </li>
   </ul>
-
 </div>
 
 
 <div *ngIf="completedTodos$ |async as todos">
   <h1>Kész lista</h1>
   <ul>
-    <li *ngFor="let todo of todos">{{todo.title}}  <span (click)="deleteTodo(todo.id)">X</span></li>
+    <li *ngFor="let todo of todos">{{todo.title}} 
+      <button (click)="deleteTodo(todo.id)" class="icon"><i class="fa fa-trash"></i></button>
+      <button (click)="incompleteTodo(todo.id)" id="incompleteButton" class="icon">-</button>
+    </li>
   </ul>
-
 </div>
 

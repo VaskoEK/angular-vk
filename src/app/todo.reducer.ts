@@ -1,6 +1,6 @@
 import { Todo } from "./app.component";
 import { createReducer, on } from "@ngrx/store";
-import { addTodo, deleteTodo, completeTodo, loadTodos, setTodos } from "./todo.actions";
+import { addTodo, deleteTodo, completeTodo, loadTodos, setTodos, incompleteTodo } from "./todo.actions";
 
 export const initialState: Todo[] = [];  // def.-ni kell egy kezdeti állapotot
 
@@ -14,6 +14,17 @@ export const todoReducer = createReducer(  // összes action végrehajtását to
             return {
                 ...todo,  // összes, a feltételnek megfelelt elemet beletesszük
                 completed: true
+            }
+        }
+        else {
+            return todo;
+        }
+    })),
+    on(incompleteTodo, (state, {id}) => state.map(todo => {
+        if (todo.id === id) {
+            return {
+                ...todo,  // összes, a feltételnek megfelelt elemet beletesszük
+                completed: false
             }
         }
         else {
