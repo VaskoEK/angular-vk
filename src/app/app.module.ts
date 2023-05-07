@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PlaygroundComponent } from './feature/playground/playground.component';
+import { FieldComponent } from './feature/field/field.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlaygroundComponent,
+    FieldComponent
   ],
   imports: [
     BrowserModule,
