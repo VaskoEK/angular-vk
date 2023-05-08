@@ -8,22 +8,25 @@
 
 <div *ngIf="inCompletedTodos$ |async as todos">
   <h1>Tennivaló lista</h1>
+  <div class="todoWrapper">
     <div *ngFor="let todo of todos" class="todoBox">{{todo.title}} <br>
       <hr class="line">
       <span>ID: {{todo.id}}</span>
       <button (click)="deleteTodo(todo.id)" class="buttonWithIcon"><span class="iconWrapper"><i class="fa fa-trash"></i></span></button>
       <button (click)="completeTodo(todo.id)" id="completeButton" class="buttonWithIcon">✓</button>
     </div>
+  </div>
 </div>
-
 
 <div *ngIf="completedTodos$ |async as todos">
   <h1>Kész lista</h1>
+  <div class="todoWrapper">
     <div *ngFor="let todo of todos" class="todoBox">{{todo.title}} <br>
       <hr class="line">
       <span>ID: {{todo.id}}</span>
       <button (click)="deleteTodo(todo.id)" class="buttonWithIcon"><span class="iconWrapper"><i class="fa fa-trash"></i></span></button>
       <button (click)="incompleteTodo(todo.id)" id="incompleteButton" class="buttonWithIcon">-</button>
     </div>
+  </div>
 </div>
 

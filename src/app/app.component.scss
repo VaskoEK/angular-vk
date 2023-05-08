@@ -1,41 +1,49 @@
-
-.todoBox {
-    width: fit-content;
-    height: 65px;
+.todoWrapper {
+    max-width: 1200px;
     border: 1px solid black;
-    padding: .2rem;
-    margin: .5rem;
+    display: flex;
+    flex-wrap: wrap;
 
-    .line {
-        color: rgb(207, 226, 226);
-    }
-    span {
-        font-size: .8rem;
-    }
-    .buttonWithIcon {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        margin-left: .3rem;
-        margin-right: .3rem;
-
-        .iconWrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    .todoBox {
+        width: fit-content;
+        height: 65px;
+        border: 1px solid black;
+        padding: .2rem;
+        margin: .5rem;
+    
+        .line {
+            color: rgb(207, 226, 226);
+        }
+        span {
+            font-size: .8rem;
+        }
+        .buttonWithIcon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            margin-left: .3rem;
+            margin-right: .3rem;
+    
+            .iconWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        #completeButton {
+            color: white;
+            background-color: green;
+            border: green;
+        }
+        
+        #incompleteButton {
+            color: white;
+            background-color: red;
+            border: red;
         }
     }
-    #completeButton {
-        color: white;
-        background-color: green;
-        border: green;
-    }
-    
-    #incompleteButton {
-        color: white;
-        background-color: red;
-        border: red;
-    }
+
 }
+
 
