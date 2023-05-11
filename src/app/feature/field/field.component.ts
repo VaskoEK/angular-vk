@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GameService } from 'src/app/core/services/game/game.service';
 import { Coords } from 'src/app/core/types/coords.type';
 
 @Component({
@@ -8,19 +9,24 @@ import { Coords } from 'src/app/core/types/coords.type';
 })
 export class FieldComponent {
 
-  @Input() lineBreakNeeded: boolean = false;
-  @Input() index: number = 0;
+  @Input() lineBreakNeeded:boolean = false;
+  @Input() index:number = 0;
   @Output() coords: EventEmitter<Coords> = new EventEmitter();
 
-  fieldClicked(): void {
-    const coords: Coords = {
-      i: Math.floor(this.index / 3),
-      j: this.index % 3
+  fieldStatus:number = 0;
+
+  constructor(private gameService: GameService){}
+
+  fieldClicked():void{
+    const coords:Coords = {
+      i:Math.floor(this.index/3),
+      j:this.index%3
     };
-    console.log(coords);
-    
+    const status = this.gameService.fieldPressed(coords.i,coords.j);
+    if(status>0){
+      this.fieldStatus = status;
+    }
     this.coords.emit(coords);
-    
   }
 
 }
