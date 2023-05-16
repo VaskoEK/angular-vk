@@ -13,19 +13,39 @@ export class FieldComponent {
   @Input() index:number = 0;
   @Output() coords: EventEmitter<Coords> = new EventEmitter();
 
-  fieldStatus:number = 0;
+  // fieldStatus:number = 0;  // ez lecserélve
+  fieldStatus:string = "";
+  
+  rowCount:number = 3;
+
+  centered = true;
 
   constructor(private gameService: GameService){}
 
+  ngOnInit(){
+    this.gameService.fieldCount$.subscribe((res:number)=>{
+      this.rowCount = Math.sqrt(res)
+    })
+  }
+
   fieldClicked():void{
     const coords:Coords = {
-      i:Math.floor(this.index/3),
-      j:this.index%3
+      i:Math.floor(this.index/this.rowCount),
+      j:this.index%this.rowCount
     };
     const status = this.gameService.fieldPressed(coords.i,coords.j);
-    if(status>0){
-      this.fieldStatus = status;
+    
+    // if(status>0){
+    //   this.fieldStatus = status;
+    // }  // ez lecserélve
+
+    if(status===1){
+      this.fieldStatus = "O";
     }
+    else if (status===2){
+      this.fieldStatus = "X";
+    }
+
     this.coords.emit(coords);
   }
 

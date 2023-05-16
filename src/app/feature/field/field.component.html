@@ -1,7 +1,13 @@
 
 <br *ngIf="lineBreakNeeded">  <!-- előbb vizsgálni kell ezt a feltételt -->
 <div class="field" (click)="fieldClicked()">
-    <div class="marker">
+    <div class="marker"      
+    
+    class="example-ripple-container mat-elevation-z4"
+    matRipple
+    [matRippleCentered]="centered"
+    
+    >
         {{(fieldStatus)?fieldStatus:""}}
     </div>
 </div>

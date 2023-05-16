@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class GameService {
 
-  fieldCount: number = 9;
   game: number[][] = [];
   activePlayerIndex:number = 1;
 
@@ -16,74 +15,98 @@ export class GameService {
   private gameEnded = new BehaviorSubject<boolean>(false);
   gameEnded$ = this.gameEnded.asObservable();
 
+  private fieldCount = new BehaviorSubject<number>(9);
+  fieldCount$ = this.fieldCount.asObservable();
+
+  countToWin:number = 3;
+
   constructor() { }
 
-  generatePlayground():void{
+  generatePlayground(rowCount:number):void{
+    this.fieldCount.next(rowCount*rowCount);
     this.game = [];
-    for(let i=0; i<3; i++){
+    this.activePlayerIndex = 1;
+    for(let i=0; i<rowCount; i++){
       this.game.push([]);
-      for(let j=0; j<3; j++){
+      for(let j=0; j<rowCount; j++){
         this.game[i].push(0);
       }
     }
+    // console.log(this.game);
+    
   }
 
   fieldPressed(i:number, j:number):number{
     let status = this.activePlayerIndex;
+    console.log("coords: ",i,",",j);
     if (this.game[i][j] === 0) {
       this.game[i][j] = this.activePlayerIndex;
       this.errorMessage.next("");
       this.switchPlayer();
-      if(this.checkifWon(i,j)){
-        console.log("nyertél");
-      }else{
-        this.checkIfFinished();
+      const winner = this.checkifWon(i,j);
+      if(winner){
+        console.log("A nyertes a ",winner, ". számú játékos");
+        alert("A nyertes a "+winner+ ". számú játékos");
+      }else if(this.checkIfFinished()){
+        console.log("Döntetlen");
+        alert("Döntetlen");
       }
-
       console.log(this.game);
-      }else{
-        this.errorMessage.next("Nem kattinthatsz erre a mezőre!");
-        console.log('Hibás kattintás');
-        status = -1;
+    }else{
+      this.errorMessage.next("Nem kattinthatsz erre a mezőre!");
+      console.log('Hibás kattintás');
+      status = -1;
+    }
+    return status;
+  }
+
+  checkifWon(oldRow:number, oldCol:number):number{
+    const n  = this.game.length;
+
+    const player  = this.game[oldRow][oldCol];
+    if(player === 0){
+      return 0;
+    }
+
+    const directions = [
+      [0,1], // vízszintes (balról jobbra)
+      [1,0], // függőleges (fentről le)
+      [1,1], // bal fentről jobb lefele átló
+      [1,-1] // jobb fentről bal lefele átló
+    ]
+
+    for(const [dx, dy] of directions){
+      let count = 1;
+
+      for(let i = 1; i<this.countToWin; i++){
+        let newRow = oldRow+i*dx;
+        let newCol = oldCol+i*dy;
+        if(newRow<0 || newRow >= n || newCol<0 ||newCol >=n|| this.game[newRow][newCol] !== player ){
+          break;
+        }
+        count++;
       }
-      return status;
-  }
 
-  checkifWon(i:number, j:number):boolean{
-    let won:boolean = false;
-    if(this.game[i].indexOf(0) < 0 && this.game[i].indexOf(this.getNextPlayer())<0 ){
-      won = true;
-    }
-    else if( this.game[0][j] === this.activePlayerIndex && this.game[1][j] === this.activePlayerIndex && this.game[2][j] === this.activePlayerIndex){
-      won = true;
-    }else if(
-      ((i === 0 || i===2)&& (j===0 || j=== 2) ||
-      (i=== 1 && j === 1))
-      ){
-      won = this.checkDiagonal();
-    }
-    return won;
-  }
+      for(let i = 1; i<this.countToWin; i++){
+        let newRow = oldRow-i*dx;
+        let newCol = oldCol-i*dy;
 
-  checkDiagonal():boolean{
-    let won = false;
-    for(let i=0; i<3; i++){
-      for(let j=0; j<3; j++){
-         if(  this.game[i][j] !== this.activePlayerIndex  ){
+        if(newRow<0 || newRow >= n || newCol<0 ||newCol >=n || this.game[newRow][newCol] !== player){
+          break;
+        }
+        count++;
+      }
 
-         }
+      if(count >=this.countToWin){
+        return player;
       }
     }
-
-
-    return won;
+    return 0;
   }
 
-  checkIfFinished():void{
-    console.log(JSON.stringify(this.game));
-    if(JSON.stringify(this.game).indexOf("0") < 0 ){
-      alert("DÖNTETLEN!");
-    }
+
+  checkIfFinished():boolean{
+    return this.game.every(row=>!row.includes(0));
   }
 
   getNextPlayer():number{
