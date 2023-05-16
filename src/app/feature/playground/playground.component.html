@@ -1,6 +1,28 @@
 <div id="playground">
 
-  <input [(ngModel)]="rowCount" type="number">
+  <!-- <input [(ngModel)]="rowCount" type="number"> -->
+
+  <mat-card class="example-result-card">
+    <mat-card-content>
+      <h2>Válassz pályaméretet:</h2>
+  
+      <div class="example-label-container">
+        <label id="example-name-label" class="example-name-label">Sorok száma</label>
+        <label class="example-value-label">{{rowCount}}</label>
+      </div>
+      <mat-slider
+          class="example-margin"
+          [disabled]="disabled"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [discrete]="thumbLabel"
+          [showTickMarks]="showTicks">
+        <input matSliderThumb [(ngModel)]="rowCount">
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+
   <button (click)="newGame()">Új játék</button>
 
   <ng-container *ngFor="let number of numbers; let i = index">

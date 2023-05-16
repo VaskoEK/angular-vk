@@ -17,6 +17,13 @@ export class PlaygroundComponent implements OnInit {
 
   constructor(private gameService: GameService){}
 
+  disabled = false;
+  max = 15;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+
   ngOnInit(){
     this.gameService.generatePlayground(this.rowCount);
     this.gameService.errorMessage$.subscribe((res) => {
