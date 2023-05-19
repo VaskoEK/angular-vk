@@ -13,8 +13,7 @@ export class FieldComponent {
   @Input() index:number = 0;
   @Output() coords: EventEmitter<Coords> = new EventEmitter();
 
-  // fieldStatus:number = 0;  // ez lecserélve
-  fieldStatus:string = "";
+  fieldStatus:number = 0;
   
   rowCount:number = 3;
 
@@ -35,15 +34,8 @@ export class FieldComponent {
     };
     const status = this.gameService.fieldPressed(coords.i,coords.j);
     
-    // if(status>0){
-    //   this.fieldStatus = status;
-    // }  // ez lecserélve
-
-    if(status===1){
-      this.fieldStatus = "O";
-    }
-    else if (status===2){
-      this.fieldStatus = "X";
+    if(status>0){
+      this.fieldStatus = status;
     }
 
     this.coords.emit(coords);
