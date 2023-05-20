@@ -3,14 +3,21 @@
   <input [(ngModel)]="rowCount" type="number">
   <button (click)="newGame()">Új játék</button>
 
-  <ng-container *ngFor="let number of numbers; let i = index">
-    <app-field
-    [lineBreakNeeded]="i%rowBreaksAfterColumnCount===0"
-    [index]="i"
-    ></app-field>
+  <input [(ngModel)]="lobbyId" type="number">
+  <button (click)="connectToLobby()">Csatlakozás játékhoz</button>
+
+  <p>Szoba azonosító: <span *ngIf="lobbyId > 0">{{lobbyId}}</span></p>
+
+  <ng-container *ngIf="lobbyId>0">
+    <ng-container *ngFor="let number of numbers; let i = index">
+      <app-field
+      [lineBreakNeeded]="i%rowBreaksAfterColumnCount===0"
+      [index]="i"
+      [fieldStatus]="0"
+      ></app-field>
+    </ng-container>
   </ng-container>
 
+
   <div *ngIf="errorMessage.length">{{errorMessage}}</div>
-  <!-- <button (click)="restartGame()">Újrakezdés!</button> -->
 </div>
-  

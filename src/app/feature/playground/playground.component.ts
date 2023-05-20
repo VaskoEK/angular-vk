@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from 'src/app/core/services/game/game.service';
 import { Coords } from 'src/app/core/types/coords.type';
 import { FieldComponent } from '../field/field.component';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-playground',
@@ -14,11 +15,15 @@ export class PlaygroundComponent implements OnInit {
   errorMessage: string = '';
   rowCount: number = 3;
   rowBreaksAfterColumnCount: number = 3;
+  lobbyId: number = 0;
+  game:number[][] = []
 
-  constructor(private gameService: GameService){}
+  constructor(private gameService: GameService) {}
 
   ngOnInit(){
-    this.gameService.generatePlayground(this.rowCount);
+    this.gameService.game$.subscribe(res=>{
+      this.game = res;
+    })
     this.gameService.errorMessage$.subscribe((res) => {
       this.errorMessage = res;
     });
@@ -30,8 +35,11 @@ export class PlaygroundComponent implements OnInit {
   }
 
   newGame():void{
-    this.gameService.generatePlayground(this.rowCount);
-    
+    this.lobbyId = this.gameService.generatePlayground(this.rowCount);
   }
-  
+
+  connectToLobby():void{
+    this.gameService.joinLobby(this.lobbyId);
+  }
+
 }
